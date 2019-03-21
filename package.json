@@ -1,9 +1,12 @@
 {
-  "name": "test",
+  "name": "node-sql",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "node scripts/build.js",
+    "serve": "node dist/index.js",
+    "test": "mocha --compilers js:babel-register"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -12,5 +15,14 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10",
+    "shelljs": "^0.8.3"
   }
 }
