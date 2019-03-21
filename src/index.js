@@ -4,13 +4,13 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import indexRouter from './routes/index';
+// import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 
 let index = express();
 
 // view engine setup
-index.set('views', path.join(__dirname, 'views'));
+index.set('views', path.join(__dirname, './views'));
 index.set('view engine', 'ejs');
 
 index.use(logger('dev'));
@@ -19,7 +19,7 @@ index.use(express.urlencoded({ extended: false }));
 index.use(cookieParser());
 index.use(express.static(path.join(__dirname, 'public')));
 
-index.use('/', indexRouter);
+// index.use('/', indexRouter);
 index.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
