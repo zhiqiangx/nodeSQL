@@ -6,31 +6,34 @@ import logger from 'morgan';
 
 // import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import dbRouter from './routes/db';
 
-let index = express();
+let app = express();
 
 // view engine setup
-index.set('views', path.join(__dirname, './views'));
-index.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
 
-index.use(logger('dev'));
-index.use(express.json());
-index.use(express.urlencoded({ extended: false }));
-index.use(cookieParser());
-index.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // index.use('/', indexRouter);
-index.use('/users', usersRouter);
+app.use('/users', usersRouter);
+app.use('/db', dbRouter);
 
 // catch 404 and forward to error handler
-index.use(function(req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-index.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  console.log(req.app.get('env'));
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
@@ -38,7 +41,6 @@ index.use(function(err, req, res, next) {
   res.render('error');
 });
 
-index.listen(4321, () => {
+app.listen(4321, () => {
   console.log('server running http://localhost:4321');
 });
-
