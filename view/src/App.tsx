@@ -1,11 +1,11 @@
 import * as React from 'react';
-import './App.css';
+import './App.scss';
 
 
 class App extends React.Component {
   public render() {
     return (
-      <div>hello, world</div>
+      <div>hello, wor ld</div>
     );
   }
 }
